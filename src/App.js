@@ -7,6 +7,7 @@ import firebase from '@firebase/app';
 import '@firebase/auth';
 import ReduxThunk from 'redux-thunk';
 import LoginForm from './components/LoginForm'
+import Router from './Router';
 
 class App extends Component<Props> {
 
@@ -28,7 +29,7 @@ class App extends Component<Props> {
     return (
       <Provider store={store}>
         <View>
-          <LoginForm/>
+          <Router />
         </View>
       </Provider>
     );
