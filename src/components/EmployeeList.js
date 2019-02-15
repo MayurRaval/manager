@@ -1,10 +1,10 @@
-import React,{ Component} from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
 class EmployeeList extends Component {
 
-  render(){
-    return(
+  render() {
+    return (
         <View>
           <Text>EmployeeeList</Text>
           <Text>EmployeeeList</Text>

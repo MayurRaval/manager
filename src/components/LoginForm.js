@@ -1,39 +1,39 @@
-import React,{ Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
-import { emailChanged, passwordChange, loginUser } from  '../actions';
+import { emailChanged, passwordChange, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
-class LoginForm extends Component{
+class LoginForm extends Component {
 
-  onEmailChange(text){
-    this.props.emailChanged(text)
+  onEmailChange(text) {
+     this.props.emailChanged(text);
   }
 
-  onPasswordChange(text){
-    this.props.passwordChange(text)
+  onPasswordChange(text) {
+    this.props.passwordChange(text);
   }
 
-  onButtonPress(){
-    const { email , password } = this.props;
-    this.props.loginUser({email, password});
+  onButtonPress() {
+    const { email, password } = this.props;
+    this.props.loginUser({ email, password });
   }
 
-  renderButton(){
+  renderButton() {
     if (this.props.loading) {
-      return <Spinner size="large"/>;
+      return <Spinner size="large" />;
     }
-    return(
+    return (
       <Button onPress={this.onButtonPress.bind(this)}>
         LogIn
       </Button>
     );
   }
 
-  renderError(){
+  renderError() {
     if (this.props.error) {
-      retrun(
-        <View style={{ backgroundColor : 'white'}}>
+      return (
+        <View style={{ backgroundColor: 'white' }}>
           <Text style={styles.errorTextStyle}>
               {this.props.error}
           </Text>
@@ -42,25 +42,25 @@ class LoginForm extends Component{
     }
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <Card>
         <CardSection>
           <Input
-            label ="Email"
-            placeholder = "example@asite.com"
+            label="Email"
+            placeholder="example@asite.com"
             onChangeText={this.onEmailChange.bind(this)}
-            value = {this.props.email}
+            value={this.props.email}
           />
         </CardSection>
 
         <CardSection>
         <Input
           secureTextEntry
-          label ="password"
-          placeholder = "password"
+          label="password"
+          placeholder="password"
           onChangeText={this.onPasswordChange.bind(this)}
-          value = {this.props.password}
+          value={this.props.password}
         />
         </CardSection>
 
@@ -75,7 +75,7 @@ class LoginForm extends Component{
 }
 
 const styles = {
-  errorTextStyle :{
+  errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
@@ -83,8 +83,9 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-  const  { email, password, error, loading} = auth;
-  return {email , password, error, loading};
+  const { email, password, error, loading } = auth;
+  console.log(email);
+  return { email, password, error, loading };
 };
 
-export default connect(mapStateToProps,{ emailChanged, passwordChange, loginUser })(LoginForm);
+export default connect(mapStateToProps, { emailChanged, passwordChange, loginUser })(LoginForm);
